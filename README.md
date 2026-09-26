@@ -108,7 +108,7 @@ src/
 
 ## 🚀 Deployment
 
-Deployed on Vercel: [Live Link](https://your-vercel-url.vercel.app)
+Deployed on Vercel: [Live Link](https://fit-log-seven-gray.vercel.app/)
 
 ## 📝 License
 
