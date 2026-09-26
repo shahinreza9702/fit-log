@@ -1,61 +1,86 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "@/assets/logo.png";
+import { useWorkout } from "@/context/WorkoutContext";
+
 const Navbar = () => {
+  const pathname = usePathname();
+  const { planCount, savedCount } = useWorkout();
+
   return (
     <header className="h-[80px] w-full border-b border-[#1a1b1f] bg-[#0c0d0f]">
       <div className="mx-auto flex h-full max-w-[1920px] items-center justify-between px-10">
 
         {/* Logo */}
         <div className="flex items-center gap-4">
-          {/* Dumbbell Icon */}
-          <Image src={Logo} alt="Logo" />
+          <Link
+            href="/"
+            className="flex items-center gap-4"
+          >
+            <Image
+              src={Logo}
+              alt="Fitlog Logo"
+            />
 
-          <span className="text-[32px] font-extrabold tracking-wide text-white">
-            FITLOG
-          </span>
+            <span className="text-[32px] font-extrabold tracking-wide text-white">
+              FITLOG
+            </span>
+          </Link>
         </div>
+
 
         {/* Navigation */}
         <nav className="flex items-center gap-8">
-          <a
-            href="#"
-            className="rounded-full bg-[#111d05] px-7 py-3 text-[18px] font-semibold text-[#c6ff00]"
+          <Link
+            href="/"
+            className={`rounded-full px-7 py-3 text-[18px] font-semibold transition-colors ${
+              pathname === "/"
+                ? "bg-[#111d05] text-[#c6ff00]"
+                : "text-[#92949d] hover:text-white"
+            }`}
           >
             Workouts
-          </a>
+          </Link>
 
-          <a
-            href="#"
-            className="text-[18px] font-medium text-[#92949d] transition-colors hover:text-white"
+          <Link
+            href="/myplan"
+            className={`rounded-full px-7 py-3 text-[18px] font-semibold transition-colors ${
+              pathname === "/myplan"
+                ? "bg-[#111d05] text-[#c6ff00]"
+                : "text-[#92949d] hover:text-white"
+            }`}
           >
             My Plan
-          </a>
+          </Link>
         </nav>
 
         {/* Right Side */}
         <div className="flex items-center gap-10">
           {/* Plan */}
-          <div className="flex items-center gap-3">
+          <Link href="/myplan" className="flex items-center gap-3">
             <span className="text-[18px] font-medium text-[#b8bac2]">
               Plan
             </span>
 
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#c6ff00] text-[15px] font-bold text-black">
-              0
+            <span className="flex items-center rounded-full bg-[#c6ff00] px-3 py-1 text-[15px] font-bold text-black">
+              {planCount}
             </span>
-          </div>
+          </Link>
 
           {/* Saved */}
-          <div className="flex items-center gap-3">
+          <Link href="/myplan" className="flex items-center gap-3">
             <span className="text-[18px] font-medium text-[#b8bac2]">
               Saved
             </span>
 
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#34363d] text-[15px] font-medium text-[#b8bac2]">
-              0
+            <span className="flex items-center rounded-full border border-[#34363d] px-3 py-1 text-[15px] font-medium text-[#b8bac2]">
+              {savedCount}
             </span>
-          </div>
+          </Link>
         </div>
 
       </div>
