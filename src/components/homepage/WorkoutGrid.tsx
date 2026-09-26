@@ -25,7 +25,7 @@ export default function WorkoutGrid() {
     let cancelled = false;
     const fetchWorkouts = async () => {
       try {
-        const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
+        const res = await fetch("https://api.api-store.workers.dev/api/fitlog");
         if (!res.ok) throw new Error("Failed to fetch workout data");
         const data = (await res.json()) as IWorkout[];
         if (!cancelled) setWorkouts(data);
